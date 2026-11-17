@@ -1,98 +1,89 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+//นำเข้า วิว ข้อความ ชื่อไลบรารี่ 
+import { View, Text, StyleSheet, Image} from 'react-native' ;
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
+//ส่งออก เริ่มต้น ตรงตัว ชื่อfunc
+export default function App() {
   return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
+    <View style={homeStyle.container}>
+
+
+      <Image source={require('@/assets/1000026976.jpg')} 
+      style={{
+        width: 200,
+        height: 200,
+        borderRadius: 100, // โค้ง
+        borderWidth: 5, //ขอบ
+        //borderColor: ... สีขอบ
+        borderColor: "skyblue",
+      }}
+      />
+      <Text style={homeStyle.title}>Natchada Phutthaisong</Text>
+
+      <Text style={{padding:10}}>บักนัทมันมึน</Text>
+
+      <View style={{flexDirection: "row"}} >
+        
+      </View>
+
+      <View style={{ flexDirection:"column",backgroundColor:"lightgray" ,width:"300",height:"100",gap:"10",borderRadius:10 ,padding:10}}>
+        <Text>ห้อง BIT.1/1 เลขที่19</Text>
+        <Text>Email: natchada.phutthaisong@e-tech.ac.th</Text>
+        <Text>Phone: 098-894-1722</Text>
+      </View>
+
+      <Text style={{right:130 ,marginTop:10}}>ภาพกิจกรรม</Text>
+
+      
+      <View style={{flexDirection:'row', gap:15 , padding:10}}>
+        <Image
+        source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnsMPOxH9mEZCiEzT31XG3Q-FNgKOCfbhxbxrvO0eNuA&s=10"}}
+        style={{
+          width: 100,
+          height: 100,
+          borderRadius: 10, // โค้ง
+        //borderWidth: 5, //ขอบ
+        //borderColor: ... สีขอบ
+      }}
+      />
+      <Image
+         source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnr0-Ns-1IHB-RE4TeNd0dGh1fqw9VBAzDcOxBZKqxWA&s=10"}}
+      style={{width:100,height:100,borderRadius:10}}
+      />
+
+      <Image
+        source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWXWPGDu9hFgqf7_DYZ3bibUdlcNIzW7qfN79DO46EDeg4QGkDATkujsc&s=10"}}
+        style={{width:100,height:100,borderRadius:10}}
+      />
+
+      </View>
+
+
+      
+      
+    </View>
+
+  
+
+    
+  )
+
+  
+
+
+
 }
-
-export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
-
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
-
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  title: {
-    textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
-});
+ //ตกแต่ง
+  const homeStyle = StyleSheet.create({
+   container:{
+    backgroundColor: "white",
+    flex:1, // ขยายที่
+    alignItems: "center"
+   },
+   title:{
+    color: "black", //สีอักสอน
+    fontSize: 30, //ขนาด 
+    fontWeight: 700, // ความหนา 100-900 
+    fontStyle: "italic", // เอียง 
+    textAlign: "center"
+   }
+ })
